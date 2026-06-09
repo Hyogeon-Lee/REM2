@@ -1,14 +1,14 @@
 {
   "name": "rem2-lab",
   "owner": {
-    "name": "Yonsei REM2 (Research laboratory of Manufacturing Mechatronics-Control Versatile Design Intelligence & Precision)",
+    "name": "Hyogeon Lee",
     "url": "https://github.com/Hyogeon-Lee/REM2"
   },
   "plugins": [
     {
       "name": "REM2",
       "source": "./REM2-plugin",
-      "description": "Yonsei REM2 lab plugin — consistent scientific/engineering plot styling for MATLAB: axes, legends, labels, time-series, X–Y, 3-D, and frequency-response rules with runnable examples."
+      "description": "Unofficial — NOT an official Yonsei University or REM2 lab plugin. Built by a grad student who couldn't bear his juniors' daring figures and wanted to ease the pain, if only a little. Consistent scientific/engineering plot styling for MATLAB: axes, legends, labels, time-series, X–Y, 3-D, and frequency-response rules with runnable examples."
     }
   ]
 }

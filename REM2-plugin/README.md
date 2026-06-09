@@ -3,19 +3,19 @@ title: REM2-plugin
 type: skill
 language: none
 category: claude-plugin
-author: REM2
+author: Hyogeon Lee
 year: 2026
 dependencies: [Claude Code, MATLAB MCP]
 status: draft
-tags: [plugin, skill, matlab, electromagnetic, control, plotting]
+tags: [plugin, skill, matlab, plotting]
 related: ["[[plot-style]]"]
 ---
 
 # REM2 Claude Code Plugin
 
-연세대 정밀생산메카트로닉스 연구실(REM2) 공용 Claude Code **플러그인**. 전자기 설계·제조·MATLAB 해석·플롯·제어 설계 워크플로우에서 재사용할 스킬과 명령을 한 패키지로 묶습니다.
+개인이 만든 **비공식** Claude Code 플러그인입니다. 연세대학교나 정밀생산메카트로닉스 연구실(REM2)의 공식 산출물이 아니며, 후배들의 도전적인 figure를 보다 못한 한 대학원생이 조금이나마 해소하고자 만들었습니다. 현재는 MATLAB 과학/공학 플롯 스타일 스킬(`plot-style`) 하나를 제공합니다.
 
-> 일반 로컬 스킬 폴더(`01_Agentic Skills/`)와 달리, 이 폴더는 **설치형 플러그인** 형식입니다. 한 번 설치하면 lab 구성원 누구나 동일한 스킬/명령을 쓸 수 있습니다.
+> 일반 로컬 스킬 폴더(`01_Agentic Skills/`)와 달리, 이 폴더는 **설치형 플러그인** 형식입니다. 한 번 설치하면 누구나 동일한 스킬을 동일하게 쓸 수 있습니다.
 
 ## 구조
 
