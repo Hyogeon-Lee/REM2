@@ -1,13 +1,13 @@
 {
   "name": "rem2-lab",
   "owner": {
-    "name": "REM2 Lab (Yonsei Precision Production Mechatronics)",
+    "name": "Yonsei REM2 (Research laboratory of Manufacturing Mechatronics-Control Versatile Design Intelligence & Precision)",
     "url": "https://github.com/Hyogeon-Lee/REM2"
   },
   "plugins": [
     {
       "name": "REM2",
-      "source": "./00_AI Workflow/REM2-plugin",
+      "source": "./REM2-plugin",
       "description": "Lab plugin — skills and workflows for electromagnetic design, manufacturing, MATLAB analysis, scientific plotting, and control system design."
     }
   ]
