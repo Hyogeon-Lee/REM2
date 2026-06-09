@@ -1,6 +1,6 @@
 ---
 name: plot-style
-description: apply consistent scientific/engineering style to plotting code (figures, axes, legends, labels, limits, aspect ratios, subplots). use only when writing or modifying code that generates plots — matlab by default, or the closest equivalent when the user names another language (python matplotlib, pandas, seaborn, plotly). covers common rules plus case modules (time-series, xy-plot, 3d-plot, frequency-response) loaded on demand. triggers: styling user-provided plotting code, generating new plotting scripts, or formatting frf/bode/nyquist/step/impulse/time-series/xy/scatter/surface plots for lab reports. not for non-code image generation or general visualization requests.
+description: apply consistent scientific/engineering style to plotting code (figures, axes, legends, labels, limits, aspect ratios, subplots). use only when writing or modifying code that generates plots — matlab by default, or the closest equivalent when the user names another language (python matplotlib, pandas, seaborn, plotly). covers common rules plus case modules (time-series, xy-plot, 3d-plot, frequency-response) loaded on demand. use when styling user-provided plotting code, generating new plotting scripts, or formatting frf/bode/nyquist/step/impulse/time-series/xy/scatter/surface plots for lab reports. not for non-code image generation or general visualization requests.
 ---
 
 # Plot Style
