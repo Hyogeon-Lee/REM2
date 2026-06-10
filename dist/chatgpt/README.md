@@ -6,8 +6,12 @@ the REM2 `plot-style` skill.
 ## Artifact
 
 - `plot-style.zip`: upload this file to ChatGPT Skills.
-- The zip must contain `plot-style/SKILL.md` at the top level.
-- The zip is generated from `REM2-plugin/skills/plot-style/`.
+- The zip must contain `plot-style/SKILL.md` at the top level, with
+  forward-slash paths (Windows zip tools emit backslash separators that some
+  extractors keep literally — build with the script below, not Explorer).
+- The zip is generated from `REM2-plugin/skills/plot-style/` by
+  `build_zip.py`. Rendered example PNGs (`examples/image_fig/`) are excluded —
+  they bloat the package and ChatGPT cannot run MATLAB to use them.
 
 ## Upload
 
@@ -20,7 +24,7 @@ the REM2 `plot-style` skill.
 ## Update
 
 1. Edit the source skill in `REM2-plugin/skills/plot-style/`.
-2. Recreate `dist/chatgpt/plot-style.zip` from that source folder.
+2. Run `python dist/chatgpt/build_zip.py` to recreate `plot-style.zip`.
 3. Upload the new zip in ChatGPT workspace skill management.
 4. Confirm the scan status and test the skill in ChatGPT.
 
