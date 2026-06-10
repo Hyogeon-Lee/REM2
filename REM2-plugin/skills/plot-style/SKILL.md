@@ -36,10 +36,8 @@ Rules are written for MATLAB. When the user explicitly requests Python (matplotl
 Single source of truth for every style value. Reference these variables throughout; never hard-code the values again.
 
 ```matlab
-set(0, 'DefaultFigureWindowStyle', 'docked');
-
 % 플롯 스타일 기본 설정 (Common)
-fontSize   = 24;
+fontSize   = 24;                   % 기본 폰트 크기 (revise에서 12~32 범위로 조절 가능)
 fontName   = 'Times New Roman';
 lineWidth  = 3.0;
 gridStyle  = '--';                 % 점선 그리드
@@ -115,7 +113,6 @@ legend(ax, hPlot(1:numLegendEntries), legendLabelsDisplayed(1:numLegendEntries),
 
 ## Figure organization
 
-- **Dock every figure**: `set(0, 'DefaultFigureWindowStyle', 'docked');` at the top, even for a single figure. Override only on explicit request.
 - Consolidate related plots into one multi-panel figure rather than many figures, unless the user wants separates.
 - Use `figure` + `subplot`. Use `tiledlayout` only when the user asks, when existing code already uses it, or when `subplot` cannot express the layout.
 
@@ -135,8 +132,8 @@ savefig(fig, fullfile('image_fig', [figName '.fig']));
 ```
 
 3. **Review.** Read the saved PNG back (via the MATLAB MCP) and verify it against **every rule in "Required on every axes" and "Series and legend"**, plus rendered-image faults: clipped data, legend overlap, distorted aspect, or fewer than 3 grid lines on an axis.
-4. **Fix vs ask.** **Fix unambiguous style violations directly** — missing units, shorthand color, wrong font/grid/linewidth, absent limits, distorted aspect, clipped data, legend overlap — and note what you changed. **Ask only when the fix changes interpretation**: which tick values to force on a sparse axis (<3 grid lines), whether a non-zero time start is intended, choosing a colormap/representation, or anything where multiple valid readings of the data exist.
-5. **Revise.** Apply the fixes (and any user-approved interpretive changes), re-save, re-review until clean.
+4. **Fix vs ask.** **Fix unambiguous style violations directly** — missing units, shorthand color, wrong font/grid/linewidth, absent limits, distorted aspect, clipped data, legend overlap — and note what you changed. When tick labels, axis labels, or legend text **crowd, overlap, or clip**, adjust the base `fontSize` as the first lever — lower it within **12–32** (default 24) until the text fits, before reaching for legend relocation or column changes. Stay inside the range; if the text still does not fit at `fontSize` 12, treat it as a layout problem (panel split, fewer series) rather than shrinking further. Note the new `fontSize` whenever you change it. **Ask only when the fix changes interpretation**: which tick values to force on a sparse axis (<3 grid lines), whether a non-zero time start is intended, choosing a colormap/representation, or anything where multiple valid readings of the data exist.
+5. **Revise (one pass).** Apply the fixes (and any user-approved interpretive changes), re-save, and re-review **once**. Stop after this single revise — do not loop. If violations still remain after the one pass, list them for the user with the suggested fix rather than re-rendering again.
 
 **Fallback when no MATLAB MCP (or non-MATLAB language).** If you cannot render/read the image back — MATLAB MCP unavailable, or the target is Python/another package run elsewhere — skip the image-reading step but keep the rest:
 
