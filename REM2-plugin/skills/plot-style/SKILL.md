@@ -21,6 +21,8 @@ User instructions override every default here. When modifying user code, preserv
 | Surface, mesh, `plot3`, scatter3, volumetric | [`references/3d-plot.md`](references/3d-plot.md) |
 | Bode, FRF, Nyquist, magnitude/phase vs frequency | [`references/frequency-response.md`](references/frequency-response.md) |
 
+3. After building the figure, run the **Render → review → revise** loop (bottom of this file) — never report a plot done from code alone.
+
 A mixed plot → apply each relevant module to its panel. No module fits → Common alone is sufficient.
 
 ## Other languages
@@ -45,20 +47,20 @@ gridAlpha  = 0.25;                 % 그리드 투명도
 maxDefaultSeries = 6;              % 기본 시리즈 최대 개수 (= 범례 항목 최대)
 legendLocationCandidates = {'northeast', 'northwest', 'southeast', 'southwest', 'northoutside'};
 colorOrder = [
-    0, 0, 0;
-    1, 0, 0;
-    0, 0, 1;
-    0, 0, 0;
-    0, 0.5, 0;
-    1, 1, 0;
-    0, 1, 1;
-    0, 1, 0
+    0,    0,    0;
+    1,    0,    0;
+    0,    0,    1;
+    0.85, 0.33, 0.10;
+    0,    0.5,  0;
+    0.49, 0.18, 0.56;
+    0,    1,    1;
+    0,    1,    0
 ];
 ```
 
 ## Required on every axes
 
-Apply to every plotting **axes** — including subplots and secondary (`yyaxis`) axes. Box and grid are **always on** for a plotting axes. A `colorbar` is **not** an axes object — it has its own `Box` (keep the default on) but **no** `XGrid`/`YGrid`/`ZGrid` (grid does not apply to a colorbar). Do **not** pass it to the `set(ax, ...)` line below — the grid properties error on a colorbar; style it separately (see "Colorbar").
+Apply to every plotting **axes** — including subplots and secondary (`yyaxis`) axes. Box and grid are **always on** for a plotting axes. A `colorbar` is **not** an axes — never pass it to the `set(ax, ...)` line below (the grid properties error on it); style it per the "Colorbar" section instead.
 
 - **Font / box / grid** — set in one line:
 
@@ -132,7 +134,10 @@ savefig(fig, fullfile('image_fig', [figName '.fig']));
 ```
 
 3. **Review.** Read the saved PNG back (via the MATLAB MCP) and verify it against **every rule in "Required on every axes" and "Series and legend"**, plus rendered-image faults: clipped data, legend overlap, distorted aspect, or fewer than 3 grid lines on an axis.
-4. **Fix vs ask.** **Fix unambiguous style violations directly** — missing units, shorthand color, wrong font/grid/linewidth, absent limits, distorted aspect, clipped data, legend overlap — and note what you changed. When tick labels, axis labels, or legend text **crowd, overlap, or clip**, adjust the base `fontSize` as the first lever — lower it within **12–32** (default 24) until the text fits, before reaching for legend relocation or column changes. Stay inside the range; if the text still does not fit at `fontSize` 12, treat it as a layout problem (panel split, fewer series) rather than shrinking further. Note the new `fontSize` whenever you change it. **Ask only when the fix changes interpretation**: which tick values to force on a sparse axis (<3 grid lines), whether a non-zero time start is intended, choosing a colormap/representation, or anything where multiple valid readings of the data exist.
+4. **Fix vs ask.**
+   - **Fix unambiguous style violations directly** — missing units, shorthand color, wrong font/grid/linewidth, absent limits, distorted aspect, clipped data, legend overlap — and note what you changed.
+   - **Font size is the first lever for crowded text.** When tick labels, axis labels, or legend text crowd, overlap, or clip, adjust the base `fontSize` within **12–32** (default 24) before reaching for legend relocation or column changes. If the text still does not fit at `fontSize` 12, treat it as a layout problem (panel split, fewer series) rather than shrinking further. Note the new `fontSize` whenever you change it.
+   - **Ask only when the fix changes interpretation** — which tick values to force on a sparse axis (<3 grid lines), whether a non-zero time start is intended, choosing a colormap/representation, or anything where multiple valid readings of the data exist.
 5. **Revise (one pass).** Apply the fixes (and any user-approved interpretive changes), re-save, and re-review **once**. Stop after this single revise — do not loop. If violations still remain after the one pass, list them for the user with the suggested fix rather than re-rendering again.
 
 **Fallback when no MATLAB MCP (or non-MATLAB language).** If you cannot render/read the image back — MATLAB MCP unavailable, or the target is Python/another package run elsewhere — skip the image-reading step but keep the rest:

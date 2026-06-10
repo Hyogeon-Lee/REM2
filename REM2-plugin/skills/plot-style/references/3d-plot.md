@@ -58,7 +58,7 @@ plot3(ax, x, y, z, 'LineStyle', '-', 'Color', colorOrder(1, :), 'LineWidth', lin
 
 ## Comparing views / representations
 
-To compare viewpoints or representations (e.g. surface vs point cloud), use `subplot(2,2,k)` panels of the **same field**: keep identical `clim`/limits across panels and vary only `view` (iso `view(30,15)` vs top-down `view(0,90)`). In dense multi-panel layouts, reduce the font from 24 for legibility.
+To compare viewpoints or representations (e.g. surface vs point cloud), use `subplot(2,2,k)` panels of the **same field**: keep identical `clim`/limits across panels and vary only `view` (iso `view(30,15)` vs top-down `view(0,90)`). In dense multi-panel layouts, lower the base `fontSize` (within the Common 12–32 range) for legibility.
 
 ## Legend / colorbar
 
