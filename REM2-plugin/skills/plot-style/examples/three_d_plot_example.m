@@ -26,6 +26,7 @@ exportgraphics(figBefore, fullfile(outDir, 'three_d_plot_before.png'), 'Resoluti
 %% ── AFTER — plot-style 3d-plot 케이스: 2x2 (상단 surf mesh, 하단 point cloud), 각 iso/top 2시점
 fontSize  = 16;            % 2x2 밀집 레이아웃 → 가독성 위해 폰트 축소 (단일 패널 기본은 24)
 fontName  = 'Times New Roman';
+axLineWidth = 1.0;                              % 축 박스·그리드 선 두께
 gridStyle = '--';  gridAlpha = 0.25;
 
 % 연속 필드 함수 (그리드 surf + 포인트 클라우드 공용)
@@ -64,9 +65,10 @@ colormap(figAfter, 'parula');
 allAx = [ax1, ax2, ax3, ax4];
 for k = 1:numel(allAx)
     ax = allAx(k);
-    set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', ...
+    set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', 'LineWidth', axLineWidth, ...
             'XGrid', 'on', 'YGrid', 'on', 'ZGrid', 'on', ...
-            'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha);
+            'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha, ...
+            'GridLineWidth', axLineWidth);      % GridLineWidth: R2023a+
     xlabel(ax, 'X Position (mm)');           % 3축 모두 라벨 + 단위
     ylabel(ax, 'Y Position (mm)');
     zlabel(ax, 'Flux Density (mT)');         % z축이 값(세기)을 나타냄 → colorbar 불필요

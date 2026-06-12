@@ -31,6 +31,7 @@ exportgraphics(figBefore, fullfile(outDir, 'frequency_response_before.png'), 'Re
 
 %% ── AFTER — plot-style Common + frequency-response 케이스 적용
 fontSize  = 24;  fontName = 'Times New Roman';  lineWidth = 3.0;
+axLineWidth = 1.0;                              % 축 박스·그리드 선 두께
 gridStyle = '--';  gridAlpha = 0.25;
 colorOrder = [0 0 0; 1 0 0; 0 0 1];
 
@@ -54,8 +55,9 @@ ylim(axPhase, [-190, 10]);
 
 % per-axes styling 적용 (두 패널 모두)
 for ax = [axMag, axPhase]
-    set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', ...
-            'XGrid', 'on', 'YGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha);
+    set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', 'LineWidth', axLineWidth, ...
+            'XGrid', 'on', 'YGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha, ...
+            'GridLineWidth', axLineWidth);      % GridLineWidth: R2023a+
     pbaspect(ax, [2 1 1]);                  % 종횡비 명시 (Common 기본; freq 모듈은 미지정)
 end
 % 범례: 모든 axes에 존재 (단일 시리즈라도 두 패널 모두)

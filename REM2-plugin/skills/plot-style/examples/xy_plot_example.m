@@ -26,6 +26,7 @@ exportgraphics(figBefore, fullfile(outDir, 'xy_plot_before.png'), 'Resolution', 
 
 %% ── AFTER — plot-style Common + xy-plot 케이스 적용 (동일 단위 → axis equal)
 fontSize  = 24;  fontName = 'Times New Roman';  lineWidth = 3.0;
+axLineWidth = 1.0;                              % 축 박스·그리드 선 두께
 gridStyle = '--';  gridAlpha = 0.25;
 colorOrder = [0 0 0; 1 0 0; 0 0 1];
 
@@ -46,8 +47,9 @@ ylabel(ax, 'Y Position (mm)');
 axis(ax, 'equal');                          % 동일 물리 단위 → 등방 스케일 (형상 보존)
 xlim(ax, [-1.1*A, 1.1*A]);
 ylim(ax, [-1.1*B, 1.1*B]);
-set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', ...
-        'XGrid', 'on', 'YGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha);
+set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', 'LineWidth', axLineWidth, ...
+        'XGrid', 'on', 'YGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha, ...
+        'GridLineWidth', axLineWidth);          % GridLineWidth: R2023a+
 legend(ax, [hPath, hStart, hEnd], {'Trajectory', 'Start', 'End'}, ...
        'Location', 'northoutside', 'NumColumns', 1, ...   % 3개 항목(1–3) → 1열
        'FontSize', fontSize, 'FontName', fontName);

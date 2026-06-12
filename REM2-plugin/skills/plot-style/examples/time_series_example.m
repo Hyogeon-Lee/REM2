@@ -33,6 +33,7 @@ exportgraphics(figBefore, fullfile(outDir, 'time_series_before.png'), 'Resolutio
 %% ── AFTER — plot-style Common + time-series 케이스 적용
 % 스타일 블록 (예제 자립성을 위해 인라인)
 fontSize  = 24;  fontName = 'Times New Roman';  lineWidth = 3.0;
+axLineWidth = 1.0;                              % 축 박스·그리드 선 두께
 gridStyle = '--';  gridAlpha = 0.25;
 colorOrder = [0 0 0; 1 0 0; 0 0 1];
 
@@ -50,8 +51,9 @@ ylabel(ax, 'Displacement (mm)');            % 물리 단위 명시
 xlim(ax, [0, t(end)]);                      % 0부터 시작
 ylim(ax, [0, 1.1*max(y)]);                  % 위쪽 ~10% 패딩
 pbaspect(ax, [2 1 1]);                      % 시계열 wide
-set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', ...
-        'XGrid', 'on', 'YGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha);
+set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', 'LineWidth', axLineWidth, ...
+        'XGrid', 'on', 'YGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha, ...
+        'GridLineWidth', axLineWidth);          % GridLineWidth: R2023a+
 legend(ax, [hMeas, hRef], {'Displacement', 'Setpoint'}, ...
        'Location', 'northoutside', 'NumColumns', 1, ...   % 2개 항목(1–3) → 1열
        'FontSize', fontSize, 'FontName', fontName);

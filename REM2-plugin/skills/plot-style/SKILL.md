@@ -1,5 +1,6 @@
 ---
 name: plot-style
+version: 0.5.0
 description: apply consistent scientific/engineering style to plotting code (figures, axes, legends, labels, limits, aspect ratios, subplots). use only when writing or modifying code that generates plots — matlab by default, or the closest equivalent when the user names another language (python matplotlib, pandas, seaborn, plotly). covers common rules plus case modules (time-series, xy-plot, 3d-plot, frequency-response) loaded on demand. use when styling user-provided plotting code, generating new plotting scripts, or formatting frf/bode/nyquist/step/impulse/time-series/xy/scatter/surface plots for lab reports. not for non-code image generation or general visualization requests.
 ---
 
@@ -42,6 +43,7 @@ Single source of truth for every style value. Reference these variables througho
 fontSize   = 24;                   % 기본 폰트 크기 (revise에서 12~32 범위로 조절 가능)
 fontName   = 'Times New Roman';
 lineWidth  = 3.0;
+axLineWidth = 1.0;                 % 축 박스·그리드 선 두께
 gridStyle  = '--';                 % 점선 그리드
 gridAlpha  = 0.25;                 % 그리드 투명도
 maxDefaultSeries = 6;              % 기본 시리즈 최대 개수 (= 범례 항목 최대)
@@ -65,8 +67,10 @@ Apply to every plotting **axes** — including subplots and secondary (`yyaxis`)
 - **Font / box / grid** — set in one line:
 
 ```matlab
-set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', 'XGrid', 'on', 'YGrid', 'on', 'ZGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha);
+set(ax, 'FontSize', fontSize, 'FontName', fontName, 'Box', 'on', 'LineWidth', axLineWidth, 'XGrid', 'on', 'YGrid', 'on', 'ZGrid', 'on', 'GridLineStyle', gridStyle, 'GridAlpha', gridAlpha, 'GridLineWidth', axLineWidth);
 ```
+
+`GridLineWidth` requires R2023a+. On older MATLAB drop that pair — grid lines then follow the axes `LineWidth` automatically.
 
 - **Labels** — `xlabel` and `ylabel` always present (`zlabel` too for 3-D). Units in **parentheses**, never brackets: `Time (s)`, not `Time [s]`.
 - **Limits** — set `xlim`/`ylim` (`zlim` for 3-D) explicitly; never leave them to auto when data could clip. With no user limits, pad ~5% beyond the data range.
